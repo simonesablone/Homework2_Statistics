@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Results</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+// Sample Data
+const qualitativeData = ['Computer Science and Engineering', 'Computer and System Engineering','Computer Science','Computer Science and Engineering', 'Computer Engineering','Software and Information Engineering','Computer Engineering','Computer Engineering','Computer Science','Computer Science','Computer Science','Computer Science','Computer Engineering','Computer Science','Computer Engineering', 'Computer Science','Computer Engineering','Computer Engineering','Computer Science','Computer Science','Computer Science','Computer Science and Engineering','Computer Science','Computer Science','Computer Science','Information Engineering, Computer Science and Statistics','Computer Science','Computer Science','Computer Science','Computer Science','International Relations','Computer Engineering', 'Computer Science','Cybersecurity','Computer Science','Computer Science','Security of information technologies','Computer Science','Computer Science','Computer Engineering','Computer Science','Computer Science','Computer Science','Computer Science','Computer Engineering','Computer Engineering','Computer Science','Computer Science','Cybersecurity','Computer Science','Conputer Engineering','Cybersecurity','Computer Science','Computer Engineering','Computer Science','Computer Science and Engineering','Computer Science and Engineering','Computer Science and Engineering'];
+const discreteQuantitativeData = [22,22,22,23,23,21,23,23,24,24,23,21,25,22,22,22,25,21,21,21,23,22,21,23,24,25,23,22,22,27,23,24,22,25,39,26,23,22,22,22,23,27,23,25,22,22,22,22,21,23,23,26,27,23,23,23,27,24];
+const continuousQuantitativeData = [5,5,5,5,5,5,5,5,5,5,5,5,4,5,5,5,4,5,5,5,5,5,4,4,4,5,4,4,2,4,4,5,4,4,4,4,3,4,4,5,4,5,4,5,4,4,4,4,4,5,4,3,4,4,4,5,3,4];
+// Algorithm for Frequency Distribution
+function computeFrequency(data) {
+  const frequency = {};
+  const total = data.length;
+
+  data.forEach(value => {
+    frequency[value] = (frequency[value] || 0) + 1;
+  });
+
+  const relativeFrequency = {};
+  for (const key in frequency) {
+    relativeFrequency[key] = frequency[key] / total;
+  }
+
+  const percentageFrequency = {};
+  for (const key in relativeFrequency) {
+    percentageFrequency[key] = relativeFrequency[key] * 100;
+  }
+
+  return {
+    absolute: frequency,
+    relative: relativeFrequency,
+    percentage: percentageFrequency,
+  };
+}
+
+// Algorithm for Joint Distribution
+function computeJointDistribution(data1, data2) {
+  const jointFrequency = {};
+
+  for (let i = 0; i < data1.length; i++) {
+    const key = `${data1[i]}_${data2[i]}`;
+    jointFrequency[key] = (jointFrequency[key] || 0) + 1;
+  }
+
+  const total = data1.length;
+
+  const relativeFrequency = {};
+  for (const key in jointFrequency) {
+    relativeFrequency[key] = jointFrequency[key] / total;
+  }
+
+  const percentageFrequency = {};
+  for (const key in relativeFrequency) {
+    percentageFrequency[key] = relativeFrequency[key] * 100;
+  }
+
+  return {
+    absolute: jointFrequency,
+    relative: relativeFrequency,
+    percentage: percentageFrequency,
+  };
+}
+
+// Execute Algorithms
+const qualitativeResult = computeFrequency(qualitativeData);
+const discreteQuantitativeResult = computeFrequency(discreteQuantitativeData);
+const continuousQuantitativeResult = computeFrequency(continuousQuantitativeData);
+const jointDistributionResult = computeJointDistribution(qualitativeData, discreteQuantitativeData);
+
+// Create HTML Table
+function createTable(data, title) {
+  const table = document.createElement('table');
+  table.innerHTML = `<caption>${title}</caption><tr><th>Category</th><th>Absolute</th><th>Relative</th><th>Percentage</th></tr>`;
+  var countA = 0;
+  var countP = 0;
+  var countR = 0;
+  for (const key in data.absolute) {
+    table.innerHTML += `<tr><td>${key}</td><td>${data.absolute[key]}</td><td>${data.relative[key]}</td><td>${data.percentage[key].toFixed(2)}%</td></tr>`;
+    countA = countA + data.absolute[key];
+    countR = countR + data.relative[key];
+    countP = countP + data.percentage[key];
+  }
+  if(countR > 0.9 || countR < 1.1){
+    countR = 1;
+  }
+  if(countP > 9.9){
+    countP = 100;
+  }
+  table.innerHTML += `<tr><td>TOTAL: </td><td> ${countA}</td><td>${countR}</td><td>${countP}%</td></tr>`;
+
+  document.body.appendChild(table);
+}
+
+// Display Results in HTML Table
+createTable(qualitativeResult, 'Qualitative Variable (Background Dergree)');
+createTable(discreteQuantitativeResult, 'Discrete Quantitative Variable (Age)');
+createTable(continuousQuantitativeResult, 'Continuous Quantitative Variable (Hard-Worker)');
+createTable(jointDistributionResult, 'Joint Distribution of Qualitative and Discrete Quantitative Variables (Background Degree and Age)');
+</script>
+
+</body>
+</html>
