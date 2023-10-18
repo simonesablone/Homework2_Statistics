@@ -1,0 +1,7 @@
+C:\Users\simon\OneDrive\Desktop\Sapienza_University\First_Year\First_Semester\Statistics\Homework\HW2\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\simon\OneDrive\Desktop\Sapienza_University\First_Year\First_Semester\Statistics\Homework\HW2\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\simon\OneDrive\Desktop\Sapienza_University\First_Year\First_Semester\Statistics\Homework\HW2\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\simon\OneDrive\Desktop\Sapienza_University\First_Year\First_Semester\Statistics\Homework\HW2\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.AssemblyReference.cache
+C:\Users\simon\OneDrive\Desktop\Sapienza_University\First_Year\First_Semester\Statistics\Homework\HW2\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\simon\OneDrive\Desktop\Sapienza_University\First_Year\First_Semester\Statistics\Homework\HW2\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\simon\OneDrive\Desktop\Sapienza_University\First_Year\First_Semester\Statistics\Homework\HW2\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
