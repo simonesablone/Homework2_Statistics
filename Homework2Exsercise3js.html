@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Variates Distribution</title>
+</head>
+<body>
+    <h2>Random Variates Distribution</h2>
+
+    <label for="inputN">Enter the value of N:</label>
+    <input type="number" id="inputN" min="1" value="100">
+
+    <label for="inputK">Enter the value of k:</label>
+    <input type="number" id="inputK" min="1" value="10">
+
+    <button onclick="generateAndDisplay()">Generate and Display</button>
+
+    <table id="outputTable" border="1">
+        <tr>
+            <th>Class Interval</th>
+            <th>Count</th>
+        </tr>
+    </table>
+
+    <script>
+        function generateAndDisplay() {
+            // Get user input for N and k
+            const N = parseInt(document.getElementById('inputN').value, 10);
+            const k = parseInt(document.getElementById('inputK').value, 10);
+
+            // Generate N uniform random variates
+            const randomVariates = Array.from({ length: N }, () => Math.random());
+
+            // Initialize an array to store the count in each class interval
+            const classCounts = Array.from({ length: k }, () => 0);
+
+            // Determine the distribution into class intervals
+            randomVariates.forEach((value) => {
+                const classIndex = Math.floor(value * k);
+                classCounts[classIndex]++;
+            });
+
+            // Display the results in an HTML table
+            const table = document.getElementById('outputTable');
+            // Clear previous rows
+            table.innerHTML = '<tr><th>Class Interval</th><th>Count</th></tr>';
+
+            // Add rows to the table
+            for (let i = 0; i < k; i++) {
+                const intervalStart = (i / k).toFixed(2);
+                const intervalEnd = ((i + 1) / k).toFixed(2);
+                const count = classCounts[i];
+
+                const row = table.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+
+                cell1.textContent = `[${intervalStart}, ${intervalEnd})`;
+                cell2.textContent = count;
+            }
+        }
+    </script>
+</body>
+</html>
