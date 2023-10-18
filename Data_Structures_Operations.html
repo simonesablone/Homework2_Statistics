@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            
+            //ARRAY AND LISTS
+            //Initialization
+            const array = [];
+            //Add elements
+            array.push(500);
+            array.push(20);
+            array.push(8);
+            //Loop with break;
+            for(let i = 0; i < array.length; i++){
+                if(array[i] < 20){
+                    break;
+                } else{
+                    console.log(array[i]); 
+                }
+            }
+              //Loop with continue;
+              for(let i = 0; i < array.length; i++){
+                if(i == 1){
+                    continue;
+                } else{
+                    console.log(array[i]); 
+                }
+              }
+            //Remove elements
+            array.pop();
+            array.pop();
+            //Check existance
+            console.log(array.includes(500)); // checking by element
+            console.log(array[0]);            // checking by position
+
+            //DICTIONARY
+            //Initialization
+            var dict = new Object();
+            //Add elements
+            dict.id = 23555;
+            dict.class = 'Cybersecurity';
+            //Loop with break
+            for(var key in dict){
+                if(key == 'class'){
+                    break;
+                } else{
+                    console.log(dict[key]);
+                }
+                
+            }
+            //Loop with continue
+            for(var key in dict){
+                if(key == 'id'){
+                    continue;
+                } else{
+                    console.log(dict[key]);
+                }
+            }
+            //Remove elements
+            delete dict.class;
+            
+
+            //Check exsistance
+            dict.hasOwnProperty('class');
+            console.log(dict['class']);
+
+            //SORTED LISTS
+            function customSort(arr) {
+                // Check if the array is an array and is not empty
+                if (!Array.isArray(arr) || arr.length === 0) {
+                    throw new Error("Invalid input. Please provide a non-empty array.");
+                }
+                // Use the sort() method with a comparator function
+                return arr.slice().sort((a, b) => {
+                    // Handle different data types
+                    if (typeof a === 'number' && typeof b === 'number') {
+                    return a - b;  // Numeric sort for numbers
+                    } else {
+                    // Convert both elements to strings for non-numeric types
+                    const stringA = String(a);
+                    const stringB = String(b);
+                    return stringA.localeCompare(stringB);  // Lexicographic sort for strings
+                    }
+                });
+            }
+            //sorted array/list
+            console.log(customSort(array));
+
+
+
+            //HASHSET
+            //Create as a class
+            class HashSet{
+                constructor(){
+                    this.items = {};
+                }
+
+                add(value){
+                    this.items[value] = true;
+                }
+
+                remove(value){
+                    delete this.items[value];
+                }
+
+                contains(value){
+                    return this.items.hasOwnProperty(value);
+                }
+
+                toArray(){
+                    return Object,keys(this.items);
+                }
+            }
+            //Initialize
+            const hashset = new HashSet();
+            //Add elements
+            hashset.add('Football');
+            hashset.add('Bodybuilding');
+            //Loop
+            for (const key in hashset.items) {
+                console.log(key);
+            }
+            //Remove elements
+            hashset.remove('Football');
+            //Check elements
+            console.log(hashset.contains('Football'));
+            console.log(hashset.contains('Bodybuilding'));
+
+            //SORTED SET
+            function sortHashSetKeys(hashSet) {
+                const keysArray = hashSet.toArray();
+                return keysArray.sort(); // Using the default lexicographic sort for strings
+            }
+
+            //QUEUE
+            //Creation object Queue
+            class Queue {
+                constructor() {
+                    this.items = [];
+                }
+
+                enqueue(element) {
+                    this.items.push(element);
+                }
+
+                dequeue() {
+                    if (this.isEmpty()) {
+                    return "Underflow";
+                    }
+                    return this.items.shift();
+                }
+
+                front() {
+                    if (this.isEmpty()) {
+                    return "Queue is empty";
+                    }
+                    return this.items[0];
+                }
+
+                isEmpty() {
+                    return this.items.length === 0;
+                }
+
+                size() {
+                    return this.items.length;
+                }
+
+                print() {
+                    console.log(this.items.join(' '));
+                }
+                contains(element) {
+                     return this.items.includes(element);
+                }
+            }
+
+            //Initialization
+            const queue = new Queue();
+            //Add elements
+            queue.enqueue(10);
+            queue.enqueue(20);
+            queue.enqueue(30);
+            //Loop
+            for (let i = 0; i < queue.size(); i++) {
+                console.log(queue.front());
+                queue.enqueue(queue.dequeue()); 
+            }
+            //Remove elements
+            queue.dequeue();
+            //Check exsistance
+            queue.contains(20);
+            
+
+
+            //STACK
+            //Creation object Stack
+            class Stack {
+                constructor() {
+                    this.items = [];
+                }
+
+                push(element) {
+                    this.items.push(element);
+                }
+
+                pop() {
+                    if (this.isEmpty()) {
+                    return "Underflow";
+                    }
+                    return this.items.pop();
+                }
+
+                peek() {
+                    if (this.isEmpty()) {
+                    return "Stack is empty";
+                    }
+                    return this.items[this.items.length - 1];
+                }
+
+                isEmpty() {
+                    return this.items.length === 0;
+                }
+
+                size() {
+                    return this.items.length;
+                }
+
+                print() {
+                    console.log(this.items.join(' '));
+                }
+                contains(element) {
+                    return this.items.includes(element);
+                }
+            }
+            //Initialization
+            const stack = new Stack();
+            //Add elemnts
+            stack.push(10);
+            stack.push(30);
+            stack.push(60);
+            //Loop
+            while (!stack.isEmpty()) {
+                console.log(stack.peek());
+                stack.pop();
+            }
+            //Remove elements
+            stack.pop();
+            //Check existance
+            stack.contains(30);
+            stack.contains(20);
+
+            //LINKEDLIST
+            class Node {
+                constructor(data, next = null) {
+                    this.data = data;
+                    this.next = next;
+                }
+            }
+
+            class LinkedList {
+                constructor() {
+                    this.head = null;
+                }
+
+            // Insert at the beginning
+                insertFirst(data) {
+                    this.head = new Node(data, this.head);
+                }
+
+            // Insert at the end
+                insertLast(data) {
+                    const newNode = new Node(data);
+
+                    if (!this.head) {
+                    this.head = newNode;
+                    return;
+                    }
+
+                    let current = this.head;
+                    while (current.next) {
+                    current = current.next;
+                    }
+
+                    current.next = newNode;
+                }
+
+            // Insert at a specific index
+                insertAt(data, index) {
+                    if (index === 0) {
+                    this.insertFirst(data);
+                    return;
+                    }
+
+                    const newNode = new Node(data);
+                    let current = this.head;
+                    let count = 0;
+                    let previous = null;
+
+                    while (count < index && current) {
+                    previous = current;
+                    current = current.next;
+                    count++;
+                    }
+
+                    if (!current) {
+            // Index is out of bounds, insert at the end
+                    previous.next = newNode;
+                    } else {
+                    newNode.next = current;
+                    previous.next = newNode;
+                    }
+                }
+
+            // Get the size of the linked list
+                size() {
+                    let count = 0;
+                    let current = this.head;
+
+                    while (current) {
+                    count++;
+                    current = current.next;
+                    }
+
+                    return count;
+                }
+
+            // Remove at a specific index
+                removeAt(index) {
+                    if (index === 0) {
+                    this.head = this.head.next;
+                    return;
+                    }
+
+                    let current = this.head;
+                    let count = 0;
+                    let previous = null;
+
+                    while (count < index && current) {
+                    previous = current;
+                    current = current.next;
+                    count++;
+                    }
+
+                    if (current) {
+                    previous.next = current.next;
+                    }
+                }
+
+            // Clear the linked list
+                clear() {
+                    this.head = null;
+                }
+
+            // Print the linked list (Loop)
+                printList() {
+                    let current = this.head;
+                    while (current) {
+                    console.log(current.data);
+                    current = current.next;
+                    }
+                }
+                contains(data) {
+                    let current = this.head;
+
+                    while (current) {
+                    if (current.data === data) {
+                        return true;
+                    }
+                    current = current.next;
+                    }
+                    return false;
+                }
+            }
+            //Initialization
+            const linkedList = new LinkedList();
+            //Add elements
+            linkedList.insertFirst(10);
+            linkedList.insertLast(20);
+            linkedList.insertAt(15, 1);
+
+            
+        
+        </script>
+    </body>
+</html>
